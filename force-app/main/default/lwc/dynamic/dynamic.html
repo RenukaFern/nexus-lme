@@ -1,0 +1,48 @@
+<template>
+<lightning-card>
+<lightning-accordion allow-multiple-sections-open>
+ 
+       
+        <lightning-accordion-section name="Income" label="Income">
+        <lightning-button slot="actions" label="Add Income" onclick={handleaddincome}></lightning-button>
+        <template for:each={incomelist} for:item="inli">
+        <lightning-layout class="slds-box slds-var-m-around_small" vertical-align="end" key={inli.id}>
+        <lightning-input label="Income Source" class="slds-var-m-right_small" name="Income_Source__c" onchange={handleInputChange} data-section="Income" data-id={inli.id}></lightning-input>
+        <lightning-input label="Monthly Amount" onchange={handleInputChange} name="Monthly_Amount__c" data-section="Income" data-id={inli.id}></lightning-input>
+        <lightning-button icon-name="utility:delete" class="slds-var-m-left_small" data-id={inli.id} onclick={handledeleteincome}></lightning-button>
+        </lightning-layout>
+        </template>
+        </lightning-accordion-section>
+       
+ 
+       
+        <lightning-accordion-section name="Assets" label="Assets">
+        <lightning-button slot="actions" label="Add Asset" onclick={handleaddasset}></lightning-button>
+        <template for:each={assetlist} for:item="asli">
+        <lightning-layout class="slds-box slds-var-m-around_small" vertical-align="end" key={asli.id}>
+        <lightning-combobox label="Asset Type" options={assetpicklist} name="Asset_Type__c" onchange={handleInputChange} data-section="Asset"></lightning-combobox>
+        <lightning-input label="Estimated Value" name="Estimated_Value__c" class="slds-var-m-right_small slds-var-m-left_small" onchange={handleInputChange} data-section="Asset" data-id={asli.id}></lightning-input>
+        <lightning-input label="Description" name="Description__c" onchange={handleInputChange} data-section="Asset" data-id={asli.id}></lightning-input>
+        <lightning-button icon-name="utility:delete" class="slds-var-m-left_small" onclick={handledeleteasset} data-id={asli.id}></lightning-button>
+        </lightning-layout>
+        </template>
+        </lightning-accordion-section>
+       
+ 
+           
+        <lightning-accordion-section name="Liabilities" label="Liabilities">
+        <lightning-button slot="actions" label="Add Liability" onclick={handleaddliability}></lightning-button>
+        <template for:each={liabilitylist} for:item="liali">
+        <lightning-layout class="slds-box slds-var-m-around_small" vertical-align="end" key={liali.id}>
+        <lightning-combobox label="Liability Type" name="Liability_Type__c" options={liabilitypicklist} onchange={handleInputChange} data-section="Liability" data-id={liali.id}></lightning-combobox>
+        <lightning-input label="Amount Owed" name="Amount_Owed__c" class="slds-var-m-right_small slds-var-m-left_small" onchange={handleInputChange} data-section="Liability" data-id={liali.id}></lightning-input>
+        <lightning-input label="Monthly Payment" name="Monthly_Payment__c" onchange={handleInputChange} data-section="Liability" data-id={liali.id}></lightning-input>
+        <lightning-button icon-name="utility:delete" class="slds-var-m-left_small" data-id={liali.id} onclick={handledeleteliability}></lightning-button>
+        </lightning-layout>
+        </template>  
+        </lightning-accordion-section>
+       
+       
+</lightning-accordion>
+</lightning-card>
+</template>
